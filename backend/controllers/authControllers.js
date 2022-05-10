@@ -54,7 +54,8 @@ exports.login = async (req, res) => {
     if (!isMatch) return res.status(400).json({ status: false, msg: "Password incorrect!!" });
 
     const token = createAccessToken({ id: user._id });
-    res.status(200).json({ token, status: true, msg: "Login successful.." });
+    delete user.password;
+    res.status(200).json({ token, user, status: true, msg: "Login successful.." });
   }
   catch (err) {
     console.error(err);

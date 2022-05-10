@@ -1,10 +1,23 @@
+import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
+import AddTask from "./pages/AddTask";
 import Home from "./pages/Home";
 import Login from "./pages/Login";
 import Signup from "./pages/Signup";
-import Tasks from "./pages/Tasks";
+import { saveProfile } from "./redux/actions/authActions";
 
 function App() {
+
+  const authState = useSelector(state => state.authReducer);
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+    if (!token) return;
+    dispatch(saveProfile(token));
+  }, [authState.isLoggedIn]);
+
   return (
     <>
       <BrowserRouter>
@@ -12,7 +25,7 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/signup" element={<Signup />} />
           <Route path="/login" element={<Login />} />
-          <Route path="/tasks" element={<Tasks />} />
+          <Route path="/tasks/add" element={<AddTask />} />
         </Routes>
       </BrowserRouter>
     </>

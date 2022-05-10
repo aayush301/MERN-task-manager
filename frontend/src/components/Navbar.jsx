@@ -1,11 +1,20 @@
 import React, { useState } from 'react'
+import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
+import { logout } from '../redux/actions/authActions';
 
 const Navbar = () => {
+
+  const authState = useSelector(state => state.authReducer);
+  const dispatch = useDispatch();
   const liClasses = 'py-2 px-3 cursor-pointer hover:bg-gray-200 transition rounded-sm';
   const [isNavbarOpen, setIsNavbarOpen] = useState(false);
   const toggleNavbar = () => {
     setIsNavbarOpen(!isNavbarOpen);
+  }
+
+  const handleLogoutClick = () => {
+    dispatch(logout());
   }
 
   return (
@@ -15,8 +24,14 @@ const Navbar = () => {
           <Link to="/"> Task Manager </Link>
         </h2>
         <ul className='hidden md:flex gap-4 uppercase font-medium'>
-          <li className={liClasses}> <i className="fa-solid fa-plus"></i> Add task</li>
-          <li className={liClasses}><Link to="/login">Logout</Link></li>
+          {authState.isLoggedIn ? (
+            <>
+              <li className={liClasses}> <i className="fa-solid fa-plus"></i> Add task</li>
+              <li className={liClasses} onClick={handleLogoutClick}>Logout</li>
+            </>
+          ) : (
+            <li className={liClasses}><Link to="/login">Login</Link></li>
+          )}
         </ul>
         <span className='md:hidden cursor-pointer' onClick={toggleNavbar}><i className="fa-solid fa-bars"></i></span>
 
