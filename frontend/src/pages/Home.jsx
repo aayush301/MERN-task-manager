@@ -5,21 +5,26 @@ import Tasks from '../components/Tasks';
 import MainLayout from '../layouts/MainLayout';
 
 const Home = () => {
-  useEffect(() => {
-    document.title = "Home";
-  }, []);
 
   const authState = useSelector(state => state.authReducer);
   const { isLoggedIn } = authState;
+
+  useEffect(() => {
+    document.title = authState.isLoggedIn ? `${authState.user.name}'s tasks` : "Task Manager";
+  }, [authState]);
+
 
 
   return (
     <>
       <MainLayout>
         {!isLoggedIn ? (
-          <div className='bg-gray-200 h-[40vh] py-8 text-center'>
+          <div className='bg-primary text-white h-[40vh] py-8 text-center'>
             <h1 className='text-2xl'> Welcome to Task Manager App</h1>
-            <Link to="/signup">Join now to manage your tasks</Link>
+            <Link to="/signup" className='mt-10 text-xl block space-x-2 hover:space-x-4'>
+              <span className='transition-[margin]'>Join now to manage your tasks</span>
+              <span className='relative ml-4 text-base transition-[margin]'><i className="fa-solid fa-arrow-right"></i></span>
+            </Link>
           </div>
         ) : (
           <>

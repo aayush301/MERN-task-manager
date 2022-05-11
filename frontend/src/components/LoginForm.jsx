@@ -7,7 +7,7 @@ import { postLoginData } from '../redux/actions/authActions';
 import Loader from './utils/Loader';
 import { useEffect } from 'react';
 
-const LoginForm = () => {
+const LoginForm = ({ redirectUrl }) => {
 
   const [formErrors, setFormErrors] = useState({});
   const [formData, setFormData] = useState({
@@ -20,9 +20,12 @@ const LoginForm = () => {
   const { loading, isLoggedIn } = authState;
   const dispatch = useDispatch();
 
+
   useEffect(() => {
-    if (isLoggedIn) navigate("/");
-  }, [authState]);
+    if (isLoggedIn) {
+      navigate(redirectUrl || "/");
+    }
+  }, [authState, redirectUrl, isLoggedIn, navigate]);
 
 
 
