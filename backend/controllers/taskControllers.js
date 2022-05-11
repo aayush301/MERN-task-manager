@@ -13,6 +13,17 @@ exports.getTasks = async (req, res) => {
   }
 }
 
+exports.getTask = async (req, res) => {
+  try {
+    const task = await Task.findOne({ user: req.user.id, _id: req.params.taskId });
+    res.status(200).json({ task, status: true, msg: "Task found successfully.." });
+  }
+  catch (err) {
+    console.error(err);
+    return res.status(500).json({ status: false, msg: "Internal Server Error" });
+  }
+}
+
 exports.postTask = async (req, res) => {
   try {
     const { description } = req.body;

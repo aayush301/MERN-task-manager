@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react'
 import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
+import Tasks from '../components/Tasks';
 import MainLayout from '../layouts/MainLayout';
 
 const Home = () => {
@@ -10,6 +11,7 @@ const Home = () => {
 
   const authState = useSelector(state => state.authReducer);
   const { isLoggedIn } = authState;
+
 
   return (
     <>
@@ -21,7 +23,8 @@ const Home = () => {
           </div>
         ) : (
           <>
-            <div className='mt-8 mx-8'>Welcome {authState.user.name}</div>
+            <h1 className='text-lg mt-8 mx-8 border-b border-b-gray-300'>Welcome {authState.user.name}</h1>
+            <Tasks />
           </>
         )}
       </MainLayout>

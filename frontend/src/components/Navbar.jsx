@@ -19,14 +19,16 @@ const Navbar = () => {
 
   return (
     <>
-      <header className='flex justify-between p-4 shadow-md items-center'>
-        <h2 className='cursor-pointer uppercase font-bold'>
+      <header className='flex justify-between sticky top-0 p-4 bg-white shadow-sm items-center'>
+        <h2 className='cursor-pointer uppercase font-medium'>
           <Link to="/"> Task Manager </Link>
         </h2>
         <ul className='hidden md:flex gap-4 uppercase font-medium'>
           {authState.isLoggedIn ? (
             <>
-              <li className={liClasses}> <i className="fa-solid fa-plus"></i> Add task</li>
+              <li className="bg-blue-500 text-white hover:bg-blue-600 font-medium rounded-md px-4 py-2">
+                <Link to='/tasks/add'> <i className="fa-solid fa-plus"></i> Add task </Link>
+              </li>
               <li className={liClasses} onClick={handleLogoutClick}>Logout</li>
             </>
           ) : (
@@ -37,7 +39,7 @@ const Navbar = () => {
 
 
         {/* Navbar displayed as sidebar on smaller screens */}
-        <div className={`absolute md:hidden right-0 top-0 transition ${(isNavbarOpen === true) ? 'translate-x-0' : 'translate-x-full'} bg-[#f5fffa] shadow-md w-full sm:w-9/12 h-full`}>
+        <div className={`absolute md:hidden right-0 top-0 transition ${(isNavbarOpen === true) ? 'translate-x-0' : 'translate-x-full'} bg-gray-100 shadow-md w-full sm:w-9/12 h-full`}>
           <div className='flex'>
             <span className='m-4 ml-auto cursor-pointer' onClick={toggleNavbar}><i className="fa-solid fa-xmark"></i></span>
           </div>

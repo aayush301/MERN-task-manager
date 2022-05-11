@@ -54,7 +54,7 @@ const LoginForm = () => {
 
   return (
     <>
-      <form className='m-auto my-16 max-w-[500px] p-8 border-2 shadow-md rounded-md'>
+      <form className='m-auto my-16 max-w-[500px] bg-white p-8 border-2 shadow-md rounded-md'>
         {loading ? (
           <Loader />
         ) : (
