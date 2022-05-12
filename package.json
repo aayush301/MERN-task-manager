@@ -7,7 +7,9 @@
     "dev-server": "npm run dev --prefix backend",
     "dev-client": "npm start --prefix frontend",
     "dev": "concurrently \"npm run dev-server\" \"npm run dev-client\"",
-    "install-all": "npm install && npm install --prefix frontend && npm install --prefix backend"
+    "install-all": "npm install && npm install --prefix frontend && npm install --prefix backend",
+    "heroku-postbuild": "npm install --prefix frontend && npm run build --prefix frontend && npm install --prefix backend",
+    "start": "cd backend && node app.js"
   },
   "keywords": [],
   "author": "",
