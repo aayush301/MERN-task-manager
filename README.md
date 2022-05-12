@@ -100,13 +100,15 @@ Following are the major dev-dependencies of the project:
     ```
     This will install all the dependencies and dev-dependencies required at root, at frontend and at backend in your project.
 
-4. Go to terminal and type the following command and hit enter:
+4. Create a file named ".env" inside the backend folder and add data from .env.example file and substitute your credentials there.
+
+5. Go to terminal and type the following command and hit enter:
     ```sh
     npm run dev
     ```
     This will start both backend and frontend.
 
-5. Open browser and go to url: http://localhost:3000. You can see the app running now.
+6. Open browser and go to url: http://localhost:3000. You can see the app running now.
 
 
 ## Backend API
